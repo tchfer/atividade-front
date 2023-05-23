@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, useEffect } from "react";
 import { Button, Form, Alert } from "react-bootstrap";
 import api from "../../../services/api";
 import "./index.css";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface ITask {
   title: string;
@@ -10,7 +10,7 @@ interface ITask {
 }
 
 const Tasks: React.FC = () => {
-  const history = useHistory();
+  const history = useNavigate();
   const { id } = useParams<{ id: string }>();
 
   const [model, setModel] = useState<ITask>({
@@ -44,7 +44,7 @@ const Tasks: React.FC = () => {
   }
 
   function back() {
-    history.goBack();
+    history(-1);
   }
 
   async function findTask(id: string) {
